@@ -1,31 +1,40 @@
-# Rtype
+# RType
 
-TODO: Write a gem description
+Rubyで書いた、小さな型推論器なのですー＞ω＜
 
-## Installation
+## インストール
 
-Add this line to your application's Gemfile:
+Bundlerで作ったので多分、
 
-```ruby
-gem 'rtype'
+```
+$ git clone https://github.com/kagamilove0707/rtype.git && cd rtype
+$ bundle console
 ```
 
-And then execute:
+で試せるのではないかと思いますです（・ω…）
 
-    $ bundle
+## 使い方
 
-Or install it yourself as:
+`bundle console`して、
 
-    $ gem install rtype
+```irb
+irb(main):001:0> include RType; include RType::Tree
+=> Object
+irb(main):002:0> env = TypeEnv.new
+=> #<RType::TypeEnv:0x007f9dd5be5530 @parent={}, @var={}>
+irb(main):003:0> id = Fun.new(:x, Var.new(:x)) # let id x = x
+=> #<RType::Tree::Fun:0x007f9dd5b61730 @arg=:x, @expr=#<RType::Tree::Var:0x007f9dd5b617f8 @name=:x>>
+irb(main):004:0> puts id.type(env) # 型推論なのですー＞ω＜
+'a2 -> 'a2
+=> nil
+```
 
-## Usage
+みたいな感じでどうでしょう（・・）？？
 
-TODO: Write usage instructions here
+## こんとりびゅーてぃんぐ
 
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/rtype/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+1. フォークするのです！ ( https://github.com/[my-github-username]/rtype/fork )
+2. ブランチを作るのです！ (`git checkout -b my-new-feature`)
+3. 変更して、それをコミットするのです！ (`git commit -am 'Add some feature'`)
+4. プッシュするのです！ (`git push origin my-new-feature`)
+5. Pull Requestを作るのです！
