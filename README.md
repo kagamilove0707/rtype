@@ -20,20 +20,32 @@ $ bundle console
 ```irb
 irb(main):001:0> include RType; include RType::Tree
 => Object
-irb(main):002:0> env = TypeEnv.new
+irb(main):002:0> env = TypeEnv.new # 型環境の作成
 => #<RType::TypeEnv:0x007f9dd5be5530 @parent={}, @var={}>
 irb(main):003:0> id = Fun.new(:x, Var.new(:x)) # let id x = x
 => #<RType::Tree::Fun:0x007f9dd5b61730 @arg=:x, @expr=#<RType::Tree::Var:0x007f9dd5b617f8 @name=:x>>
 irb(main):004:0> puts id.type(env) # 型推論なのですー＞ω＜
-'a2 -> 'a2
+'a1 -> 'a1
 => nil
 ```
 
 みたいな感じでどうでしょう（・・）？？
 
+## TODO
+
+重要課題！！
+
+- [ ] パーサーの作成
+- [ ] 評価器の作成
+- [ ] ドキュメントの作成
+
+そんなに重要じゃないのです（・ω…）
+
+- [ ] 型システムの拡張
+
 ## こんとりびゅーてぃんぐ
 
-1. フォークするのです！ ( https://github.com/[my-github-username]/rtype/fork )
+1. フォークするのです！ ( https://github.com/kagamilove0707/rtype/fork )
 2. ブランチを作るのです！ (`git checkout -b my-new-feature`)
 3. 変更して、それをコミットするのです！ (`git commit -am 'Add some feature'`)
 4. プッシュするのです！ (`git push origin my-new-feature`)
