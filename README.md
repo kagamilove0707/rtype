@@ -11,7 +11,7 @@ $ git clone https://github.com/kagamilove0707/rtype.git && cd rtype
 $ bundle console
 ```
 
-で試せるのではないかと思いますです（・ω…）
+で試せるのではないかと思いますです（・ω・）
 
 ## 使い方
 
