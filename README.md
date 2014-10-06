@@ -8,25 +8,28 @@ Bundlerで作ったので多分、
 
 ```
 $ git clone https://github.com/kagamilove0707/rtype.git && cd rtype
-$ bundle console
+$ rake install
 ```
 
 で試せるのではないかと思いますです（・ω・）
 
 ## 使い方
 
-`bundle console`して、
+`rake install`して、
 
-```irb
-irb(main):001:0> include RType; include RType::Tree
-=> Object
-irb(main):002:0> env = TypeEnv.new # 型環境の作成
-=> #<RType::TypeEnv:0x007f9dd5be5530 @parent={}, @var={}>
-irb(main):003:0> id = Fun.new(:x, Var.new(:x)) # let id x = x
-=> #<RType::Tree::Fun:0x007f9dd5b61730 @arg=:x, @expr=#<RType::Tree::Var:0x007f9dd5b617f8 @name=:x>>
-irb(main):004:0> puts id.type(env) # 型推論なのですー＞ω＜
-'a1 -> 'a1
-=> nil
+```
+(rtype)| let id = fun x -> x in id 1
+let id = fun x -> x in id 1 :: int
+(rtype)| :{
+(rtype)| let zero = fun z s -> z in
+(rtype)| let succ = fun n z s -> s (n z s) in
+(rtype)| succ zero
+(rtype)| :}
+let zero = fun z s -> z in
+let succ = fun n z s -> s (n z s) in
+succ zero
+ :: 'a5 -> ('a5 -> 'a13) -> 'a13
+(rtype)| :q
 ```
 
 みたいな感じでどうでしょう（・・）？？
@@ -35,7 +38,7 @@ irb(main):004:0> puts id.type(env) # 型推論なのですー＞ω＜
 
 重要課題！！
 
-- [ ] パーサーの作成
+- [x] パーサーの作成
 - [ ] 評価器の作成
 - [ ] ドキュメントの作成
 
