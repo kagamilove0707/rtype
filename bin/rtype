@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require 'readline'
+
+require 'rtype'
+
+def execute(src)
+  begin
+    parsed = RType::Parser.new.parse(src)
+    tree = RType::Transform.new.apply(parsed)
+
+    env = RType::TypeEnv.new
+    type = tree.type env
+    puts "#{src} :: #{type}"
+  rescue => e
+    puts e
+    puts e.backtrace.join "\n"
+  end
+end
+
+multi = false
+buf = ""
+while src = Readline.readline("(rtype)| ", true).chomp
+  if src[0] == ":"
+    case src.split[0][1..-1]
+    when "q", "quit"
+      break
+    when "p", "parse"
+      begin
+        parsed = RType::Parser.new.parse(src[2..-1])
+        tree = RType::Transform.new.apply(parsed)
+        p parsed
+        p tree
+      rescue => e
+        puts e
+        puts e.backtrace.join("\n")
+      end
+    when "{"
+      multi = true
+    when "}"
+      multi = false
+      execute src
+    end
+  else
+    if multi
+      buf << src << "\n"
+    else
+      execute src
+    end
+  end
+end
