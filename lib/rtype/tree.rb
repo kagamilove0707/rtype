@@ -108,7 +108,7 @@ module RType::Tree
       arg_type = @arg.type(env)
 
       ret_type = env.make_type_var
-      env.unify f_type, FunType.new(arg_type, ret_type)
+      env.unify f_type, RType::FunType.new(arg_type, ret_type)
       ret_type
     end
   end

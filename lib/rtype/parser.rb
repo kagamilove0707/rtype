@@ -52,7 +52,7 @@ module RType
     }
 
     rule(:value) {
-      lparen >> value >> rparen |
+      (lparen >> expr >> rparen) |
       bool | int | var
     }
 
@@ -64,7 +64,9 @@ module RType
       value
     }
 
-    root :expr
+    rule(:start) { space? >> expr }
+
+    root :start
   end
 
   class Transform < Parslet::Transform
@@ -81,8 +83,8 @@ module RType
     rule(fun: {args: sequence(:args), expr: simple(:expr)}) {
       args.reverse.reduce(expr) {|e, arg| Tree::Fun.new arg.name, e }
     }
-    rule(app: {f: simple(:f), args: sequence(:args)}) {
-      f = Tree::App.new f, args.shift
+    rule(app: {f: simple(:fun), args: sequence(:args)}) {
+      f = Tree::App.new fun, args.shift
       args.reduce(f) {|f, arg| Tree::App.new f, arg }
     }
   end
