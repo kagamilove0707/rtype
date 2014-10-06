@@ -17,7 +17,8 @@ $ rake install
 
 `rake install`して、
 
-```
+```console
+$ rtype
 (rtype)| let id = fun x -> x in id 1
 let id = fun x -> x in id 1 :: int
 (rtype)| :{
