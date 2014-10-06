@@ -39,7 +39,8 @@ while src = Readline.readline("(rtype)| ", true).chomp
       multi = true
     when "}"
       multi = false
-      execute src
+      execute buf
+      buf = ""
     end
   else
     if multi
