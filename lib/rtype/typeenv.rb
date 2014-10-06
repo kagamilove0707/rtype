@@ -1,3 +1,5 @@
+require 'rtype/tree'
+
 module RType
   
   # 型(eg. int, bool...)

@@ -1,3 +1,5 @@
+require 'rtype/typeenv'
+
 module RType::Tree
   # literals
 
